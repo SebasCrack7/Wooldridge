@@ -50,6 +50,9 @@ with tab1:
                            title="Distribución de Dependientes", marginal="rug")
     st.plotly_chart(fig_dep)
 
+    st.subheader("Resumen estadístico de las variables")
+    st.dataframe(wage.describe())
+
 # Análisis bivariado (aquí puedes agregar el análisis bivariado más tarde)
 with tab2:
     st.header("Análisis Bivariado")
