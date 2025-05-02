@@ -53,6 +53,7 @@ with tab1:
     st.subheader("Resumen estadístico de las variables")
     st.dataframe(wage.describe())
 
+
 # Análisis bivariado (aquí puedes agregar el análisis bivariado más tarde)
 with tab2:
     st.header("Análisis Bivariado")
@@ -68,6 +69,22 @@ with tab2:
     # 3. Salario vs Dependientes
     fig_biv_dep = px.scatter(wage, x="dependientes", y="salario", color="sexo", title="Salario vs Dependientes por Sexo")
     st.plotly_chart(fig_biv_dep)
+      
+    st.header("Análisis Bivariado - Boxplots")
+
+    # Boxplot: Salario por Género
+    fig_box_sexo = px.box(wage, x="sexo", y="salario", title="Distribución del Salario por Género")
+    st.plotly_chart(fig_box_sexo)
+
+    # Boxplot: Salario por Estado Civil
+    fig_box_civil = px.box(wage, x="casado", y="salario", title="Distribución del Salario por Estado Civil")
+    st.plotly_chart(fig_box_civil)
+
+    # Boxplot: Salario por Número de Dependientes (como categoría)
+    wage['dependientes_cat'] = wage['dependientes'].astype(str)  # Convertir a categórica para x
+    fig_box_dep = px.box(wage, x="dependientes_cat", y="salario",
+                         title="Distribución del Salario por Número de Dependientes")
+    st.plotly_chart(fig_box_dep)
 with tab3:
     
     st.title("Ejemplo")
